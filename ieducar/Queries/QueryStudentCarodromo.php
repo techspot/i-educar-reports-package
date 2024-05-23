@@ -1,6 +1,6 @@
 <?php
 
-class QueryStudentCard extends QueryBridge
+class QueryStudentCarodromo extends QueryBridge
 {
     /**
      * @inheritdoc
@@ -20,22 +20,12 @@ class QueryStudentCard extends QueryBridge
                 matricula.ano AS ano_letivo,
                 educacenso_cod_aluno.cod_aluno_inep AS inep,
                 pessoa.nome AS nome_aluno,
-                pessoa.email AS email_aluno,
                 to_char(fisica.data_nasc,'dd/mm/yyyy') AS data_nasc,
                 fone_pessoa.fone AS fone,
                 fone_pessoa.ddd AS fone_ddd,
                 documento.rg AS rg,
                 fisica_foto.caminho AS foto,
-                CASE WHEN fisica_foto.caminho IS NULL THEN 0 ELSE 1 END AS existe_foto,
-                CASE $P{cor_de_fundo}
-                    WHEN 1 THEN 'yellow'
-                    WHEN 2 THEN 'blue'
-                    WHEN 3 THEN 'orange'
-                    WHEN 4 THEN 'purple'
-                    WHEN 5 THEN 'green'
-                    WHEN 6 THEN 'red'
-                    ELSE 'blue'
-                END AS cor_fundo
+                CASE WHEN fisica_foto.caminho IS NULL THEN 0 ELSE 1 END AS existe_foto
             FROM pmieducar.instituicao
             INNER JOIN pmieducar.escola ON (escola.ref_cod_instituicao = instituicao.cod_instituicao)
             INNER JOIN pmieducar.escola_ano_letivo ON (escola_ano_letivo.ref_cod_escola = escola.cod_escola)

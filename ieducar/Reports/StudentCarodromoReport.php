@@ -2,7 +2,7 @@
 
 use iEducar\Reports\JsonDataSource;
 
-class StudentCardReport extends Portabilis_Report_ReportCore
+class StudentCarodromoReport extends Portabilis_Report_ReportCore
 {
     use JsonDataSource;
 
@@ -13,10 +13,8 @@ class StudentCardReport extends Portabilis_Report_ReportCore
     public function templateName()
     {
         $modelos = [
-            1 => 'student-card-model1',
-            2 => 'student-card-model2',
-            3 => 'student-card-model3',
-            4 => 'student-card-model4',
+            1 => 'student-carodromo-model1',
+            2 => 'student-carodromo-model2'
         ];
 
         return $modelos[$this->args['modelo']];
@@ -34,9 +32,9 @@ class StudentCardReport extends Portabilis_Report_ReportCore
     }
 
     public function getJsonData()
-    {   
+    {
         return [
-            'main' => (new QueryStudentCard())->get($this->args),
+            'main' => (new QueryStudentCarodromo())->get($this->args),
             'header' => Portabilis_Utils_Database::fetchPreparedQuery($this->getSqlHeaderReport())
         ];
     }
