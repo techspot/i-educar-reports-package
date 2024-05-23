@@ -86,26 +86,5 @@ class StudentCarodromoController extends Portabilis_Controller_ReportCoreControl
         $this->report->addArg('situacao_matricula', $this->getRequest()->situacao_matricula);
 
         $this->report->addArg('modelo', (int) $this->getRequest()->modelo);
-
-        /*
-        if (((int) $this->getRequest()->modelo) == 1 || ((int) $this->getRequest()->modelo == 3)) {
-            $this->report->addArg('leiestudante', config('legacy.report.lei_estudante'));
-            $this->report->addArg('diretorioimg', config('legacy.app.database.dbname'));
-            switch (config('legacy.report.carteira_estudante.codigo')) {
-                case 'codigo_inep':
-                    $this->report->addArg('codigo', 1);
-                    break;
-                case 'codigo_aluno':
-                    $this->report->addArg('codigo', 2);
-                    break;
-                case 'codigo_estado':
-                    $this->report->addArg('codigo', 3);
-                    break;
-            }
-        }
-        if ((int) $this->getRequest()->modelo == 1) {
-            $this->report->addArg('imprimir_serie', $this->getRequest()->imprimir_serie ? 1 : 0);
-        }
-        */
     }
 }
