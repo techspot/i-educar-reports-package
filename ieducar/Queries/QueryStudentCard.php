@@ -20,6 +20,7 @@ class QueryStudentCard extends QueryBridge
                 matricula.ano AS ano_letivo,
                 educacenso_cod_aluno.cod_aluno_inep AS inep,
                 pessoa.nome AS nome_aluno,
+                pessoa.email AS email_aluno,
                 to_char(fisica.data_nasc,'dd/mm/yyyy') AS data_nasc,
                 fone_pessoa.fone AS fone,
                 fone_pessoa.ddd AS fone_ddd,
