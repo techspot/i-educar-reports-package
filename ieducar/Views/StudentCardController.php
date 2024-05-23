@@ -51,7 +51,8 @@ class StudentCardController extends Portabilis_Controller_ReportCoreController
             $resources = [
                 1 => 'Modelo 1',
                 2 => 'Modelo 2',
-                3 => 'Modelo 3'
+                3 => 'Modelo 3',
+                4 => 'Modelo 4'
             ];
 
             $options = ['label' => 'Modelo', 'resources' => $resources, 'value' => 1];
@@ -99,12 +100,14 @@ class StudentCardController extends Portabilis_Controller_ReportCoreController
         $this->report->addArg('serie', (int) $this->getRequest()->ref_cod_serie);
         $this->report->addArg('turma', (int) $this->getRequest()->ref_cod_turma);
         $this->report->addArg('validade', $this->getRequest()->validade);
+
         $this->report->addArg('cor_de_fundo', (int) $this->getRequest()->cor_de_fundo);
+        if ((int) $this->getRequest()->modelo != 4) {
+            $configPath = config('legacy.report.caminho_fundo_carteira_transporte');
+            $path = empty($configPath) ? '/var/www/ieducar/ieducar/modules/Reports/Assets/Images/StudentCard' : $configPath;
 
-        $configPath = config('legacy.report.caminho_fundo_carteira_transporte');
-        $path = empty($configPath) ? '/var/www/ieducar/ieducar/modules/Reports/Assets/Images/StudentCard' : $configPath;
-
-        $this->report->addArg('caminho_fundo_carteira_transporte', $path);
+            $this->report->addArg('caminho_fundo_carteira_transporte', $path);
+        }
         if (!isset($_POST['ref_cod_matricula'])) {
             $this->report->addArg('matricula', 0);
         } else {
