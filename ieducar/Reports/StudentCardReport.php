@@ -16,6 +16,7 @@ class StudentCardReport extends Portabilis_Report_ReportCore
             1 => 'student-card-model1',
             2 => 'student-card-model2',
             3 => 'student-card-model3',
+            4 => 'student-card-model4',
         ];
 
         return $modelos[$this->args['modelo']];
@@ -33,7 +34,7 @@ class StudentCardReport extends Portabilis_Report_ReportCore
     }
 
     public function getJsonData()
-    {
+    {   
         return [
             'main' => (new QueryStudentCard())->get($this->args),
             'header' => Portabilis_Utils_Database::fetchPreparedQuery($this->getSqlHeaderReport())
