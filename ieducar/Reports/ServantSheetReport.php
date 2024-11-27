@@ -191,7 +191,7 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
                 ) AS telefones,
                 celular.ddd AS celular_ddd,
                 celular.fone AS celular_fone,
-                fisica_foto.caminho,
+                fisica_foto.caminho AS foto,
                 fisica.data_admissao AS dt_adimissao
             FROM
                 cadastro.pessoa pessoa
