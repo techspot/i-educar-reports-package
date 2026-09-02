@@ -187,7 +187,7 @@ class ClassBoardMapController extends Portabilis_Controller_ReportCoreController
     private function resolveNota(array $row, int $etapa): string
     {
         if ($etapa > 0 && $etapa <= 4) {
-            return (string) ($row['nota' . $etapa] ?? '');
+            return str_replace(',', '.', (string) ($row['nota' . $etapa] ?? ''));
         }
 
         // Etapa 0 (todas): média das notas disponíveis
@@ -208,6 +208,6 @@ class ClassBoardMapController extends Portabilis_Controller_ReportCoreController
 
         $media = array_sum($notas) / count($notas);
 
-        return str_replace('.', ',', number_format($media, 1));
+        return number_format($media, 1, '.', '');
     }
 }
