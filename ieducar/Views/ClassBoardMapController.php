@@ -164,7 +164,12 @@ class ClassBoardMapController extends Portabilis_Controller_ReportCoreController
         $lines[] = "\xEF\xBB\xBF";
 
         // Cabeçalho da turma
-        $lines[] = 'Turma ' . $nomeTurma;
+        $nomeEtapa = $rows[0]['nome_etapa'] ?? 'Trimestre';
+        $headerTurma = 'Turma ' . $nomeTurma;
+        if ($etapa > 0) {
+            $headerTurma .= ' - ' . $etapa . ' ' . $nomeEtapa;
+        }
+        $lines[] = $headerTurma;
 
         // Cabeçalho das colunas
         $lines[] = 'Nome do Aluno;' . implode(';', $disciplinasList);
