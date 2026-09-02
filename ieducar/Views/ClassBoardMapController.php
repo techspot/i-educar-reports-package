@@ -9,6 +9,8 @@ class ClassBoardMapController extends Portabilis_Controller_ReportCoreController
      */
     protected $_processoAp = 999609;
 
+    protected $formato = 'pdf';
+
     protected $_titulo = 'Relatório Mapa do Conselho de Classe';
 
     protected function _preRender()
@@ -80,12 +82,12 @@ class ClassBoardMapController extends Portabilis_Controller_ReportCoreController
         $this->report->addArg('emitir_assinaturas', (bool) $this->getRequest()->emitir_assinaturas);
         $this->report->addArg('situacao', (int) $this->getRequest()->situacao_matricula_id);
         $this->report->addArg('orientacao', (string) $this->getRequest()->orientacao);
-        $this->report->addArg('formato', (string) $this->getRequest()->formato);
+        $this->formato = (string) $this->getRequest()->formato ?: 'pdf';
     }
 
     public function renderReport()
     {
-        if (($this->report->args['formato'] ?? 'pdf') !== 'csv') {
+        if ($this->formato !== 'csv') {
             parent::renderReport();
 
             return;
