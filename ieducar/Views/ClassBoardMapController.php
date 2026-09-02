@@ -107,13 +107,20 @@ class ClassBoardMapController extends Portabilis_Controller_ReportCoreController
             $csv = $this->buildCsv($rows);
 
             $nomeTurma = $rows[0]['nome_turma'] ?? 'mapa';
+            $etapa = (int) ($this->report->args['etapa'] ?? 0);
+            $filename = 'mapa-conselho-' . $nomeTurma;
+            if ($etapa > 0) {
+                $nomeEtapa = strtolower($rows[0]['nome_etapa'] ?? 'trimestre');
+                $filename .= '-' . $etapa . '-' . $nomeEtapa;
+            }
+            $filename .= '.csv';
 
             header('Pragma: public');
             header('Expires: 0');
             header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
             header('Cache-Control: private', false);
             header('Content-Type: text/csv; charset=utf-8');
-            header('Content-Disposition: attachment; filename="mapa-conselho-' . $nomeTurma . '.csv"');
+            header('Content-Disposition: attachment; filename="' . $filename . '"');
             header('Content-Transfer-Encoding: binary');
             header('Content-Length: ' . strlen($csv));
 
